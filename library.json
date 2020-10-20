@@ -25,6 +25,10 @@
 		{
 			"name": "ArduinoLog",
 			"version": "*"
+		},
+		{
+			"name": "gpio_commons",
+        	"version": "https://github.com/featherfly/gpio_commons.git"
 		}
 	]
 }
