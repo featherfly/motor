@@ -1,3 +1,4 @@
+#include <ArduinoLog.h>
 #include "switch_motor.h"
 
 SwitchMotor::SwitchMotor() {}
@@ -30,16 +31,16 @@ void SwitchMotor::setSwitch(Switch *_end)
 void SwitchMotor::forward()
 {
     motor->forward();
-    while (end->isClose())
+    while(end->isOpen())
     {
-        motor->stop();
     }
+    motor->stop();
 }
 void SwitchMotor::backward()
 {
     motor->backward();
-    while (start->isClose())
+    while (start->isOpen())
     {
-        motor->stop();
     }
+    motor->stop();
 }
