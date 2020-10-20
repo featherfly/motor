@@ -1,0 +1,30 @@
+{
+	"name": "motor",
+	"keywords": "motor, AVR, ESP8266",
+	"description": "motor is lib for control motor.",
+	"version": "1.0.0",
+	"authors": {
+		"name": "zhongj",
+		"url": "https://github.com/featherfly",
+		"maintainer": true
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/featherfly/motor.git"
+	},
+	"homepage": "https://github.com/featherfly/motor/",
+	"frameworks": [
+		"arduino"
+	],
+	"platforms": "*",
+	"examples": "examples/*/*.ino",
+	"build": {
+		"srcDir": "src"
+	},
+	"dependencies": [
+		{
+			"name": "ArduinoLog",
+			"version": "*"
+		}
+	]
+}
