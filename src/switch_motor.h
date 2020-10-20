@@ -6,8 +6,8 @@
 class SwitchMotor{
     private:
         Motor *motor = &Motor();
-        Switch *start = &Switch(-1);
-        Switch *end = &Switch(-1);
+        Switch *start = &Switch(&Pin(-1, INPUT));
+        Switch *end = &Switch(&Pin(-1, INPUT));
     public:
         SwitchMotor();
         SwitchMotor(Motor *_motor, Switch* _start, Switch* _end);
