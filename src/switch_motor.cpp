@@ -30,7 +30,10 @@ void SwitchMotor::setSwitch(Switch *_end)
 }
 void SwitchMotor::forward()
 {
-    motor->forward();
+    if (end->isClose())
+    {
+        motor->forward();
+    }
     while(end->isOpen())
     {
     }
@@ -38,7 +41,10 @@ void SwitchMotor::forward()
 }
 void SwitchMotor::backward()
 {
-    motor->backward();
+    if (end->isClose())
+    {
+        motor->backward();
+    }
     while (start->isOpen())
     {
     }
