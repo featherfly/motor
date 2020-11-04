@@ -41,7 +41,7 @@ void SwitchMotor::forward()
 }
 void SwitchMotor::backward()
 {
-    if (end->is_off())
+    if (start->is_off())
     {
         motor->backward();
     }
