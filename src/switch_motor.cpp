@@ -68,7 +68,7 @@ int SwitchMotor::backward()
             break;
         }
     }
-    Log.notice(F("switch_motor.backward motor->stop(), start->is_on() %T, runningTime %d" CR), start->is_on(), runningTime);
+    Log.notice(F("switch_motor.backward motor->stop(), start->is_on() %T, runningTime %d" CR), start->is_on(), _runningTime);
     motor->stop();
     _runningTime = millis() - startTime;
     return _runningTime;
