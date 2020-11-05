@@ -27,8 +27,10 @@ void SwitchMotor::setSwitch(Switch *_end)
 {
     end = _end;
 }
-void SwitchMotor::forward()
+int SwitchMotor::forward()
 {
+    _runningTime = 0;
+    unsigned long startTime = millis();
     Log.notice(F("switch_motor.forward end->is_on() %T" CR), end->is_on());
     if (end->is_on())
     {
@@ -37,12 +39,21 @@ void SwitchMotor::forward()
     }
     while(end->is_on())
     {
+        _runningTime = millis() - startTime;
+        if (user_onRunning(_runningTime , STEP_FORWARD) == EVENT_RUNNING_STOP)
+        {
+            break;
+        }
     }
-    Log.notice(F("switch_motor.forward motor->stop(), end->is_on() %T" CR), end->is_on());
+    Log.notice(F("switch_motor.forward motor->stop(), end->is_on() %T, runningTime %d" CR), end->is_on(), _runningTime);
     motor->stop();
+    _runningTime = millis() - startTime;
+    return _runningTime;
 }
-void SwitchMotor::backward()
+int SwitchMotor::backward()
 {
+    _runningTime = 0;
+    unsigned long startTime = millis();
     Log.notice(F("switch_motor.backward start->is_on() %T" CR), start->is_on());
     if (start->is_on())
     {
@@ -51,7 +62,24 @@ void SwitchMotor::backward()
     }
     while (start->is_on())
     {
+        _runningTime = millis() - startTime;
+        if (user_onRunning(_runningTime , STEP_BACKWARD) == EVENT_RUNNING_STOP)
+        {
+            break;
+        }
     }
-    Log.notice(F("switch_motor.backward motor->stop(), start->is_on() %T" CR), start->is_on());
+    Log.notice(F("switch_motor.backward motor->stop(), start->is_on() %T, runningTime %d" CR), start->is_on(), runningTime);
     motor->stop();
+    _runningTime = millis() - startTime;
+    return _runningTime;
+}
+
+int SwitchMotor::runningTime()
+{
+    return _runningTime;
+}
+
+void SwitchMotor::onRunning(int (*function)(int, bool))
+{
+    user_onRunning = function;
 }

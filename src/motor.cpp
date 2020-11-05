@@ -5,17 +5,33 @@
 Motor::Motor()
 {
 }
+Motor::Motor(bool _forwardState)
+{
+    forwardState = _forwardState;
+}
+
+void Motor::go(bool direction)
+{
+    if (direction == forwardState) 
+    {
+        Log.notice(F("Motor.forward forwardState %T" CR), forwardState);
+        state = STATE_FORWARD;
+    } 
+    else 
+    {
+        Log.notice(F("Motor.backward forwardState %T" CR), forwardState);
+        state = STATE_BACKWARD;
+    }
+}
 
 void Motor::forward()
 {
-    Log.notice(F("Motor.forward" CR));
-    state = STATE_FORWARD;
+    go(forwardState);
 }
 
 void Motor::backward()
 {
-    Log.notice(F("Motor.backward" CR));
-    state = STATE_BACKWARD;
+    go(!forwardState);
 }
 
 void Motor::stop()

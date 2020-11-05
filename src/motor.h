@@ -8,17 +8,18 @@
 
 class Motor
 {
-private:
-
 protected:
     int state = 0;
+    bool forwardState = true;
 public:
     Motor();
+    Motor(bool forwardState);
+    virtual void go(bool direction);
     virtual void forward();
     virtual void backward();
     virtual void stop();
     virtual void brake();
-    bool isRunning();
+    virtual bool isRunning();
 };
 
 #endif

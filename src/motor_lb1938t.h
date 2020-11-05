@@ -9,6 +9,8 @@ private:
     int pin2;
 public:
     MotorLb1938t(int pin1, int pin2);
+    MotorLb1938t(int pin1, int pin2, bool forwardState);
+    void go(bool direction);
     void forward();
     void backward();
     void stop();
