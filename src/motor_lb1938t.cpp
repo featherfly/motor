@@ -26,7 +26,7 @@ MotorLb1938t::MotorLb1938t(int _pin1, int _pin2, bool _forwardState) : Motor(_fo
 
 void MotorLb1938t::go(bool direction)
 {
-    if (direction == forwardState) 
+    if (direction) 
     {
         Log.notice(F("MotorLb1938t.forward forwardState %T" CR), forwardState);
         digitalWrite(pin1, HIGH);
